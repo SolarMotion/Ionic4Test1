@@ -4,6 +4,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Alert } from './shared/alert';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +28,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar, 
-    private authenticationService: AuthenticationService,
+    //private authenticationService: AuthenticationService,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
   ) {
     this.initializeApp();
   }
@@ -39,7 +40,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.authenticationService.authenticationState.subscribe(state => {
+      this.authService.authenticationState.subscribe(state => {
         if (state) {
           this.router.navigate(['home']);
         } else {
